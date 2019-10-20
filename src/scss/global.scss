@@ -1,0 +1,260 @@
+@import "typography";
+@import "colors";
+@import "mixins";
+
+body {
+  background-color: white;
+  color: black;
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  z-index: 3000;
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  transition: 0.5s ease all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.hide {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+  .lds-ripple div {
+    position: absolute;
+    border: 4px solid $primary;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  .lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+  @keyframes lds-ripple {
+    0% {
+      top: 28px;
+      left: 28px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: -1px;
+      left: -1px;
+      width: 58px;
+      height: 58px;
+      opacity: 0;
+    }
+  }
+  
+}
+
+button {
+  padding: 14px 24px;
+  border: 0;
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  border-radius: 8px;
+  justify-content: center;
+
+  &.primary {
+    background: $primary;
+    color: white;
+  }
+
+  .button-icon {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    background-color: darken($primary, 10%);
+  }
+}
+
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.desktop-nav {
+  background-color: white;
+
+  .nav-item {
+    &.active {
+      a {
+        font-weight: 800;
+      }
+      
+    }
+  }
+}
+
+.mobile-nav {
+  @include respond-above(xs) {
+    display: none;
+  }
+
+  background-color: white;
+  z-index: 1000;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  color: #000;
+  box-shadow: 0px 4px 10px 5px rgba(0,0,0,0.05);
+}
+
+#home-header {
+  width: 100%;
+  height: 20vh;
+  background-color: $bg;
+}
+
+section {
+  width: 100%;
+
+  &#main {
+    display: flex;
+
+    p {
+      &.center{
+        text-align: center;
+      }
+    }
+
+    button {
+      width: 100%;
+    }
+
+    .logo-home {
+      align-self: center;
+      width: 250px;
+      margin-top: -125px;
+      margin-bottom: 24px;
+    }
+
+    .home-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+}
+
+.challenge {
+  #header {
+    padding: 24px;
+    background-color: $primary;
+    color: white;
+
+    .logo {
+      width: 50px;
+      margin-bottom: 48px;
+    }
+
+    .challenge-img {
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      color: white;
+    }
+
+    .call {
+      display: block;
+    }
+  }
+
+  #main {
+    padding: 24px;
+  }
+
+}
+
+.form {
+  margin-top: 24px;
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .form-control {
+    border: 0;
+    border-bottom: 1px solid $primary;
+    border-radius: 0;
+    margin-top: 4px;
+    background-color: #f4f4f4;
+    font-size: 18px;
+
+    &:focus {
+      border-bottom: 3px solid darken($primary, 10%);
+      box-shadow: none;
+      background-color: lighten($primary, 33%);
+    }
+  }
+  
+  input[textarea].form-control:focus {
+    margin-bottom: -3px;
+  }
+  label {
+    font-size: 18px;
+    margin-bottom: 4px;
+    color: lighten($primary, 10%);
+  }
+}
+
+.alert {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 32px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+
+  .alert-text {
+    margin-left: 16px;
+    color: white;
+  }
+
+  &.success {
+    background-color: $primary;
+  }
+
+  &.error {
+    background-color: $error;
+  }
+
+  &.hide {
+    display: none;
+  }
+}
+
+footer {
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+  padding: 24px 0;
+  background-color: #222;
+}
